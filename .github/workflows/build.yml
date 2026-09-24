@@ -1,11 +1,34 @@
 name: Build ZMK firmware
 on:
   workflow_dispatch:
+    inputs:
+      target:
+        description: "Which firmware(s) to build"
+        type: choice
+        default: all
+        options:
+          - all
+          - dongle-eyeslash
+          - dongle-lcd
+          - peripherals-oled
+          - peripherals-nice-view
+          - halves-oled
+          - halves-nice-view
+          - settings-reset
   push:
     paths:
       - "boards/**"
       - "config/**"
-      
+
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
+    with:
+      # "all" (and every push build) uses the full build.yaml matrix;
+      # anything else picks the matching subset in build-targets/.
+      build_matrix_path: >-
+        ${{ (github.event_name == 'workflow_dispatch' && inputs.target != 'all')
+        && format('build-targets/{0}.yaml', inputs.target)
+        || 'build.yaml' }}
+      archive_name: >-
+        firmware-${{ github.event_name == 'workflow_dispatch' && inputs.target || 'all' }}

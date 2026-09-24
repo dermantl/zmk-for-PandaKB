@@ -1,0 +1,8 @@
+# Subset of build.yaml -- keep in sync when shields/snippets change.
+include:
+  - board: nice_nano_v2
+    shield: Lily58_dongle_left nice_oled
+    artifact-name: Lily58_peripheral_left_oled
+  - board: nice_nano_v2
+    shield: Lily58_dongle_right nice_oled
+    artifact-name: Lily58_peripheral_right_oled

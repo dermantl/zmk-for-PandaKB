@@ -1,3 +1,6 @@
+# Full build matrix -- used by push builds and by the "all" target of the
+# "Build ZMK firmware" workflow. The subsets in build-targets/ duplicate these
+# entries, so update them too when a board/shield/snippet changes here.
 include:
 # Lily58 without dongle 不带dongle的Lily58
   # Lily58 with oled display(with nice_oled module) 适用于带oled的Lily58

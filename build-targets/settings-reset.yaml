@@ -1,0 +1,4 @@
+# Subset of build.yaml -- keep in sync when shields/snippets change.
+include:
+  - board: nice_nano_v2
+    shield: settings_reset
